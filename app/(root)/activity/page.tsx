@@ -1,4 +1,4 @@
-import { fetchUser, getAcitvity } from "@/lib/actions/user.actions";
+import { fetchUser, getActivity } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +11,7 @@ async function Page() {
   const userInfo = await fetchUser(user.id);
   if (!userInfo?.onboarded) redirect("/onboarding");
 
-  const activity = await getAcitvity(userInfo._id);
+  const activity = await getActivity(userInfo._id);
 
   return (
     <section>
@@ -30,7 +30,10 @@ async function Page() {
                     className="rounded-full object-cover"
                   />
                   <p className="!text-small-regular text-light-1">
-                    <span className="mr-1 text-primary-500">{activity.author.name}</span> replied to your thread
+                    <span className="mr-1 text-primary-500">
+                      {activity.author.name}
+                    </span>{" "}
+                    replied to your thread
                   </p>
                 </article>
               </Link>
