@@ -135,7 +135,11 @@ const ThreadCard = ({
           </Link>
         </div>
       )}
-
+      {!isComment && !community &&(
+        <p className="text-subtle-medium text-gray-1 mt-5">
+          {formatDateString(createdAt)}
+        </p>
+      )}
       {!isComment && community && (
         <Link
           href={`/communities/${community.id}`}
